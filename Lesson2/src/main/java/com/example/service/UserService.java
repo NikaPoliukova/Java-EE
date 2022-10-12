@@ -1,13 +1,29 @@
 package com.example.service;
 
-import com.example.model.User;
-
 import java.util.List;
 
-public interface UserService {
-    List<User> findUsers();
+import com.example.model.User;
+import com.example.repository.UserRepository;
 
-    boolean addUser(User user);
 
-    boolean getUser(User user);
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<User> findUsers() {
+        return userRepository.findUsers();
+    }
+
+    public void addUser(String name, String password) {
+        userRepository.addUser(name, password);
+    }
+
+    public boolean getUser(String name, String password) {
+        return userRepository.getUser(name, password);
+    }
+
 }

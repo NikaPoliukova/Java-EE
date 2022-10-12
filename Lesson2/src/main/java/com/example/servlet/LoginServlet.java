@@ -1,6 +1,5 @@
 package com.example.servlet;
 
-import com.example.model.User;
 import com.example.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -11,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-
-@WebServlet("/registration")
-public class RegisterUserServlet extends HttpServlet {
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -26,17 +23,21 @@ public class RegisterUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/registration.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final String userName = req.getParameter("name");
-        final String password = req.getParameter("password");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
         try (PrintWriter out = resp.getWriter()) {
-            userService.addUser(userName, password);
-            final List<User> users = userService.findUsers();
-            users.stream().forEach(user -> out.println(user.getUserName()));
+            if (userService.getUser(username, password)) {
+                out.println("Logged in");
+            } else {
+                getServletContext().getRequestDispatcher("/registration").forward(req, resp);
+                out.println("User does not exist");
+                out.println("Please, register");
+            }
         }
     }
 }

@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebListener;
 import com.example.repository.UserRepository;
 import com.example.repository.UserRepositoryImpl;
 import com.example.service.UserService;
-import com.example.service.UserServiceImpl;
 
 
 @WebListener
@@ -28,7 +27,7 @@ public class DependencyInitializationContextListener implements ServletContextLi
             Class.forName(dbDriver);
             final Connection con = DriverManager.getConnection(dbUrl, username, password);
             UserRepository repository = new UserRepositoryImpl(con);
-            UserService userService = new UserServiceImpl(repository);
+            UserService userService = new UserService(repository);
             sce.getServletContext().setAttribute("userService", userService);
         } catch (Exception e) {
             e.printStackTrace();
