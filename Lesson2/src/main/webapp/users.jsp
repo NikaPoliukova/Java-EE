@@ -12,7 +12,7 @@
     <tr>
         <th>Name</th>
     </tr>
-    <% for (User user : (List<User>) request.getAttribute("users")) {%>
+    <% for (User user : (List<User>)request.getAttribute("users")) {%>
     <tr>
         <td>
             <%=user.getUserName()%>

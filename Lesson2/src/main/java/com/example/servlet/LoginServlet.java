@@ -1,7 +1,6 @@
 package com.example.servlet;
 
 import com.example.service.UserService;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

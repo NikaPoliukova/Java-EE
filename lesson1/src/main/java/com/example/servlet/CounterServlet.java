@@ -3,6 +3,7 @@ package com.example.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,22 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CounterServlet", urlPatterns = "/information")
 public class CounterServlet extends HttpServlet {
 
-    private int count=0;
+    private AtomicInteger count;
 
     public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        String initial = config.getInitParameter("initial");
-        try {
-            count = Integer.parseInt(initial);
-        } catch (NumberFormatException e) {
-            count = 0;
-        }
+        super.init();
+        count = new AtomicInteger();
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        count++;
+        req.setCharacterEncoding("UTF-8");
+        count.getAndIncrement();
     }
 
     @Override

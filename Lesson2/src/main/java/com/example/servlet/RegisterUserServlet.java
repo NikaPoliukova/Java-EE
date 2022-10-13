@@ -2,7 +2,6 @@ package com.example.servlet;
 
 import com.example.model.User;
 import com.example.service.UserService;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

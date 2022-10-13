@@ -15,7 +15,6 @@ import com.example.service.UserService;
 
 @WebListener
 public class DependencyInitializationContextListener implements ServletContextListener {
-
     @Override
     public void contextInitialized(final ServletContextEvent sce) {
         final String dbDriver = "org.postgresql.Driver";
