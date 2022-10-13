@@ -1,9 +1,11 @@
 CREATE TABLE users
 (
-      name VARCHAR NOT NULL UNIQUE
+      name VARCHAR NOT NULL UNIQUE,
+      password VARCHAR NOT NULL
 
 );
 
-INSERT INTO users (name)
-VALUES ('Nika');
+INSERT INTO users (name, password)
+VALUES ('user1', '123489');
+
 

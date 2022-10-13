@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.model.User;
 
@@ -8,8 +9,9 @@ public interface UserRepository {
 
     List<User> findUsers();
 
-    boolean addUser(User user);
+    boolean getUser(String name, String password);
 
-    boolean getUser(User user);
+    void addUser(String name, String password);
+
 
 }
